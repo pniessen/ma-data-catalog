@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Data for Medicare Advantage Bid &amp; Margin Forecasting</title>
+<style>
+  :root{
+    --ink:#1c2230; --muted:#646e82; --line:#e6e9f0; --bg:#f5f7fb; --card:#ffffff;
+    --accent:#3b5bdb; --accent2:#0c8599; --shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 64px}
+  header.hero{background:linear-gradient(135deg,#3b5bdb 0%,#0c8599 100%);color:#fff;padding:48px 0 40px;margin-bottom:28px}
+  header.hero .wrap{padding-bottom:0}
+  header.hero h1{font-size:30px;margin:0 0 8px;font-weight:700;letter-spacing:-.4px}
+  header.hero p.sub{font-size:16px;margin:0 0 18px;opacity:.92;max-width:760px}
+  .meta{font-size:13px;opacity:.85}
+  .intro{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:20px 24px;margin-bottom:24px;font-size:14.5px;color:#333}
+  .intro b{color:var(--ink)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:14px;font-size:12.5px;align-items:center}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600;white-space:nowrap;line-height:1.7}
+  .free{background:#e6f7ec;color:#1a7f4b} .key{background:#e7f1fd;color:#1b5fc4}
+  .mixed{background:#fdf3e0;color:#9a6212} .paid{background:#fde8e8;color:#b3261e}
+  .reg{background:#eee9fb;color:#6741d9}
+  section.bucket{background:var(--card);border-radius:14px;box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden}
+  .bucket > .bhead{padding:18px 24px 6px;border-bottom:1px solid var(--line)}
+  .bucket .bnum{font-size:12px;font-weight:700;letter-spacing:.6px;color:var(--accent);text-transform:uppercase}
+  .bucket h2{font-size:19px;margin:3px 0 4px;letter-spacing:-.2px}
+  .bucket .bdesc{font-size:13.5px;color:var(--muted);margin:0 0 14px;max-width:840px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  thead th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);
+    padding:8px 24px;background:#fbfcfe;border-bottom:1px solid var(--line);font-weight:700}
+  tbody td{padding:13px 24px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#f8faff}
+  td.name{width:21%;font-weight:650}
+  td.name a{color:var(--accent);text-decoration:none}
+  td.name a:hover{text-decoration:underline}
+  td.what{width:48%;color:#39414f}
+  td.grain{width:17%;color:var(--muted);font-size:12px}
+  td.grain .g{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;color:#475063;display:block;margin-bottom:3px}
+  td.acc{width:14%}
+  .footer{font-size:12.5px;color:var(--muted);text-align:center;margin-top:30px;line-height:1.7}
+  .footer a{color:var(--accent);text-decoration:none}
+  .tag{font-size:11px;color:var(--muted)}
+  @media(max-width:720px){
+    thead{display:none}
+    tbody td{display:block;padding:4px 18px;width:auto!important;border:none}
+    tbody tr{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+    td.name{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Public Data for Medicare Advantage Bid &amp; Margin Forecasting</h1>
+    <p class="sub">A curated catalog of public &amp; low-cost datasets useful for modeling MA <b>membership</b>,
+      <b>bids</b>, <b>revenue</b>, <b>cost</b>, and <b>plan-level margin</b>. Grouped by what they help you model.</p>
+    <div class="meta">Links verified June 2026 · Unless tagged otherwise, every source is free to download.</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="intro">
+    Most of MA's public data is <b>supply-side</b> (what CMS pays, what care costs); the harder gaps are
+    realized plan economics, the demand/choice side, and the “true” underlying risk pool. This catalog spans all
+    of it. Each entry notes the <b>grain</b> (the join key you'll actually use) and the <b>access tier</b>.
+    <div class="legend">
+      <span class="pill free">FREE</span> open download &nbsp;
+      <span class="pill key">FREE · KEY</span> free API key (instant) &nbsp;
+      <span class="pill reg">FREE · REGISTER</span> free account &nbsp;
+      <span class="pill mixed">FREE HEADLINE / PAID</span> summary free, detail paid &nbsp;
+      <span class="pill paid">PAID / DUA</span> subscription or data-use agreement
+    </div>
+  </div>
+
+  <!-- 1 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 1</div>
+      <h2>Plan bids, payment &amp; margin</h2>
+      <p class="bdesc">The core economics at contract / plan grain — the closest public windows onto what plans
+        bid, what CMS actually pays, and realized medical-loss ratio.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/health-drug-plans/plan-payment-data">MA Plan Payment Data (Part C/D)</a></td>
+          <td class="what">CMS's enrollment-weighted <b>realized</b> average A/B payment PMPM, rebate PMPM, and Part C risk score per plan — the realized counterpart to the bid. The single best free anchor for the revenue waterfall.</td>
+          <td class="grain"><span class="g">contract-PBP + county</span> ~52k plan-years · 2006–2024</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/data">MA Bid Pricing Data (BPT PUF)</a></td>
+          <td class="what">Extracts of the filled Bid Pricing Tool: each plan's projected bid, allowed/paid cost, admin load, rebate, and its own gain/(loss) margin line. The only public view of plan-projected economics.</td>
+          <td class="grain"><span class="g">contract-PBP-segment</span> ~CY2014–2021 (5-yr lag)</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/health-drug-plans/medical-loss-ratio">Contract MLR Public Use File</a></td>
+          <td class="what">Reported medical-loss ratio plus revenue, claims, member-months and (detailed years) 19 supplemental-benefit line items + the Part D split. The real cost/revenue anchor — and the distribution of contract MLRs.</td>
+          <td class="grain"><span class="g">contract</span> ~166 cols · 2014–2023</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.medpac.gov/document-type/data-book/">MedPAC Data Book &amp; Reports</a></td>
+          <td class="what">The authoritative national quantification of MA payment vs FFS, average rebate PMPM, and the payment-gap split into coding intensity vs favorable selection — with downloadable figure Excel. Best macro calibration anchor.</td>
+          <td class="grain"><span class="g">national</span> annual · 2007–2026</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/ratebooks-supporting-data">MA Ratebooks &amp; Rate Announcement</a></td>
+          <td class="what">County benchmarks (the bid ceiling), the FFS standardized rates behind them, and the annual payment parameters (growth, normalization, coding-intensity, rebate % by star). The legal Apr-T inputs for next-year bids.</td>
+          <td class="grain"><span class="g">county / national</span> annual · 2000–2027</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 2 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 2</div>
+      <h2>Plan benefits, enrollment &amp; quality</h2>
+      <p class="bdesc">The plan attributes a forecaster needs as features — benefit design, who enrolled where, star quality, and member experience.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/benefits-data">Plan Benefit Package (PBP) Data</a></td>
+          <td class="what">Full per-plan benefit design: deductibles, MOOP, per-service cost-sharing, and supplemental benefits (dental/vision/hearing/OTC/meals/transport/fitness). Published incl. forward years — a legal Aug-T feature.</td>
+          <td class="grain"><span class="g">contract-PBP-segment</span> annual incl. 2026</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data">MA/Part D Enrollment &amp; Landscape</a></td>
+          <td class="what">Monthly enrollment by contract-plan-county (CPSC), the consumer-facing Landscape (premiums/benefits), county penetration, and the year-over-year plan crosswalk (consolidations/terminations). The membership substrate.</td>
+          <td class="grain"><span class="g">contract-PBP × county</span> monthly · 2006–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/health-drug-plans/part-c-d-performance-data">Star Ratings (incl. CAHPS &amp; disenrollment)</a></td>
+          <td class="what">Every quality measure by contract — including the CAHPS member-experience composites (top-box 0–100) and the “Members Choosing to Leave the Plan” voluntary-disenrollment rate. Strong retention predictors (experience ↔ disenroll ≈ −0.4).</td>
+          <td class="grain"><span class="g">contract</span> annual · 2010–2026</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/quarterly-prescription-drug-plan-formulary-pharmacy-network-and-pricing-information">Part D Formulary, Pharmacy Network &amp; Pricing</a></td>
+          <td class="what">The complete public drug benefit: every drug on every plan's formulary with tier and prior-auth / step-therapy / quantity-limit flags, plus drug pricing and pharmacy networks. Joins to contract-plan via the plan-information file — build formulary breadth, tier richness, and UM intensity as Part D cost and plan-choice features.</td>
+          <td class="grain"><span class="g">formulary → contract-PBP</span> quarterly · ~2.6 GB/release</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 3</div>
+      <h2>Cost, risk &amp; utilization benchmarks</h2>
+      <p class="bdesc">Local fee-for-service and provider data — the proxy MA medical cost tracks — plus the one public MA-specific utilization series.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county">Medicare Geographic Variation PUF</a></td>
+          <td class="what">County FFS standardized per-capita cost and utilization rates (admits, ED, readmits per 1,000) plus average HCC. The canonical county cost/utilization benchmark for the cost chain.</td>
+          <td class="grain"><span class="g">county / state / national</span> annual · 2007–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/medicare-shared-savings-program/county-level-aggregate-expenditure-and-risk-score-data-on-assignable-beneficiaries">MSSP County Expenditure &amp; Risk PUF</a></td>
+          <td class="what">County per-capita FFS cost <i>and</i> CMS-HCC risk score split by ESRD / disabled / aged-dual / aged-nondual — a real coded-RAF anchor and a selection-by-segment signal (ESRD ~$93k vs aged-nondual ~$12k/yr).</td>
+          <td class="grain"><span class="g">county × enrollment-type</span> 2014–2019/24</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/cost-reports">HCRIS Hospital Cost Reports</a></td>
+          <td class="what">Provider-level realized total/operating margin, actual cost, cost-to-charge ratios, and Medicare/managed-care day mix. The only source with realized provider <b>margin</b>; county-mappable via CCN.</td>
+          <td class="grain"><span class="g">provider (CCN) → county</span> ~6.8k hosp · 2011–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/collection/cms-program-statistics">CMS Program Statistics — MA Utilization</a></td>
+          <td class="what">Encounter-data-derived MA utilization (IP/SNF/OP/physician, per-1,000) — the only public <b>MA-specific</b> utilization series, so you can check that MA use ≠ the FFS proxy.</td>
+          <td class="grain"><span class="g">national / service-type</span> 2016–2022</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/provider-summary-by-type-of-service">Provider Utilization &amp; Payment PUFs</a></td>
+          <td class="what">FFS service-line detail: Physician/Other Practitioners, Part D Prescribers, Inpatient/Outpatient charges, post-acute. Builds local service-mix and unit-cost benchmarks.</td>
+          <td class="grain"><span class="g">provider / state × code</span> 2013–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 4</div>
+      <h2>Beneficiary health &amp; risk</h2>
+      <p class="bdesc">Member-level health, the real CMS-HCC machinery, and synthetic claim streams — for modeling risk scores and the within-county risk mix.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/research/medicare-current-beneficiary-survey">MCBS Public Use File</a></td>
+          <td class="what">A real, survey-weighted, <b>MA-vs-FFS-flagged</b> beneficiary health survey — the rare public read on the MA member-health envelope and the MA-vs-FFS selection direction.</td>
+          <td class="grain"><span class="g">beneficiary (weighted)</span> 2013–2022</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.hosonline.org/en/data-dissemination/research-data-files/">Medicare Health Outcomes Survey (HOS)</a></td>
+          <td class="what">Patient-reported physical/mental health, chronic conditions, and functional status for MA enrollees — a real member-health distribution to validate synthetic risk spreads (PUF lacks plan IDs).</td>
+          <td class="grain"><span class="g">beneficiary</span> 1998–2024</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files">DE-SynPUF (synthetic claims)</a></td>
+          <td class="what">CMS synthetic beneficiary claim lines — a public substrate for building per-member risk shapes and exercising an HCC grouper without a data-use agreement.</td>
+          <td class="grain"><span class="g">synthetic beneficiary</span> 2008–2010</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/risk-adjustment">CMS-HCC Risk-Adjustment Model</a></td>
+          <td class="what">The official HCC grouper logic and coefficients (and the annual model files) — lets you compute real risk scores from diagnoses, the engine behind MA revenue.</td>
+          <td class="grain"><span class="g">model / coefficients</span> annual</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 5</div>
+      <h2>County demographics, denominators &amp; SDOH (the “true risk pool”)</h2>
+      <p class="bdesc">County context that drives who enrolls and how sick a market is. The social-determinants layer is especially useful as the gap coded risk scores miss: <b>SDOH-implied need minus coded RAF</b> ≈ the under-diagnosis / favorable-selection wedge.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.census.gov/data/tables/time-series/demo/health-insurance/acs-hi.html">Census ACS — Health Insurance</a></td>
+          <td class="what">County 65+ population, Medicare-covered share, and age structure (tables B27001/C27006) — the membership denominator over which MA penetration is computed.</td>
+          <td class="grain"><span class="g">county</span> annual · 2008–</td>
+          <td class="acc"><span class="pill key">FREE · KEY</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.hrsa.gov/topics/health-workforce/nchwa/ahrf">Area Health Resources File (AHRF)</a></td>
+          <td class="what">One county file with 6,000+ variables — physician/specialist supply, hospital beds, facilities, demographics, rurality. A ready-made county market-structure feature pack.</td>
+          <td class="grain"><span class="g">county</span> ~3,235 cty · annual</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cdc.gov/places/">CDC PLACES</a></td>
+          <td class="what">Model-based county prevalence of 26 chronic conditions (diabetes, CHD, COPD, CKD…). Real measured morbidity at county grain — a strong “true need” signal independent of MA coding.</td>
+          <td class="grain"><span class="g">county</span> ~3,150 cty · 2020–25</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/medicare-chronic-conditions/specific-chronic-conditions">CMS Medicare Chronic Conditions (CCW)</a></td>
+          <td class="what"><b>Claims-measured</b> county prevalence of 21 chronic conditions among Medicare <b>FFS</b> beneficiaries — incl. chronic kidney disease and heart failure that PLACES omits — plus a multiple-condition burden tail and FFS per-capita spend. The Medicare-specific complement to PLACES (model-based / all-adult); disease-resolved, so conditions map to drug classes for Part D / out-of-pocket modeling. FFS-only, so it reads the risk pool's <i>shape</i>, not the MA pool.</td>
+          <td class="grain"><span class="g">county (FFS)</span> ~3,144 cty · 2017</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://wonder.cdc.gov/">CDC WONDER / Census PEP</a></td>
+          <td class="what">County all-cause mortality and 65+ population denominators — a county morbidity/mortality proxy (and an independent population base). (Available via Census PEP when the WONDER API is unavailable.)</td>
+          <td class="grain"><span class="g">county × age</span> 1999– / 2011–24</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.countyhealthrankings.org/health-data">County Health Rankings &amp; Roadmaps</a></td>
+          <td class="what">A county-native SDOH bundle (poverty, income, uninsured, education, housing, premature death) split into outcomes vs upstream factors — purpose-built for a need-vs-risk analysis. One harmonized file.</td>
+          <td class="grain"><span class="g">county</span> ~3,150 cty · 2021–25</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.graham-center.org/maps-data-tools/social-deprivation-index.html">Social Deprivation Index (SDI)</a></td>
+          <td class="what">A clean 7-factor county deprivation composite (poverty, education, housing, no-car, non-employment) — free of ADI's distorting home-value term and built to predict unmet care need.</td>
+          <td class="grain"><span class="g">county / ZCTA</span> ~3,140 cty · ACS vintages</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.ers.usda.gov/data-products/food-environment-atlas/">USDA Food Environment Atlas</a></td>
+          <td class="what">County food insecurity, food access, SNAP, and obesity/diabetes. Food insecurity has the best-quantified SDOH→senior-Medicare-cost link (~$5.5k/yr) and ties to grocery-benefit modeling.</td>
+          <td class="grain"><span class="g">county</span> ~3,150 cty · to 2025</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.census.gov/programs-surveys/saipe.html">Census SAIPE + BLS LAUS</a></td>
+          <td class="what">Current-vintage county poverty/median income (SAIPE) + monthly/annual unemployment (LAUS) — the timely economic-stress layer that the 5-year ACS / deprivation vintages miss.</td>
+          <td class="grain"><span class="g">county</span> annual · 1989/1990–</td>
+          <td class="acc"><span class="pill key">FREE · KEY</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.atsdr.cdc.gov/place-health/php/svi/">CDC SVI &amp; UW ADI</a></td>
+          <td class="what">County/tract social-vulnerability and area-deprivation composites. Convenient SDOH indices — note ADI's home-value term distorts high-cost counties (prefer SDI for cost work); ADI needs a free login.</td>
+          <td class="grain"><span class="g">county / tract</span> biennial / periodic</td>
+          <td class="acc"><span class="pill reg">FREE · REGISTER</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 6</div>
+      <h2>Carrier financials &amp; coding/UM signals</h2>
+      <p class="bdesc">The closest public reads on realized medical ratios and the coding-intensity / utilization-management levers behind cross-contract margin dispersion.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.sec.gov/edgar/search/">SEC EDGAR — Insurer Filings</a></td>
+          <td class="what">Public MAOs' realized medical-care ratio, premium, and membership via 10-K/Q and the XBRL APIs (UNH, Humana, CVS/Aetna, Elevance, Centene…). A carrier-level reasonableness band on modeled MLR.</td>
+          <td class="grain"><span class="g">company segment</span> 2009– (XBRL)</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://content.naic.org/research-actuarial">NAIC Supplemental Health Care Exhibit</a></td>
+          <td class="what">Statutory company × state × market loss ratios incl. a Medicare column — the finest realized-MA-financial grain below CMS contract data. National aggregate is free; the clean company-state cut is paid.</td>
+          <td class="grain"><span class="g">company × state</span> annual · 2010–</td>
+          <td class="acc"><span class="pill mixed">FREE HEADLINE / PAID</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://oig.hhs.gov/reports/all/">HHS-OIG MA Risk-Adjustment Audits</a></td>
+          <td class="what">Per-contract audited overpayment / coding-error rates on sampled high-risk diagnoses — a rare contract-grain read on coding aggressiveness (sparse, non-random sample).</td>
+          <td class="grain"><span class="g">contract</span> ~45 audits · PY2014–18</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/priorities/burden-reduction/overview/interoperability">MA Prior-Authorization Transparency</a></td>
+          <td class="what">New under the 2024 Interoperability rule: per-contract PA volume, denial %, and appeal/overturn % posted on payer sites (first CY2025 data due Mar 2026) — the first public utilization-management signal at contract grain.</td>
+          <td class="grain"><span class="g">contract</span> annual · CY2025–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 7 -->
+  <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Bucket 7</div>
+      <h2>Consumer demand &amp; shopping behavior</h2>
+      <p class="bdesc">The demand-side sources for calibrating a member-choice model — shopping/switching rates and the ranking of decision drivers. Stated-preference unless noted; use for rates and ordering, not cardinal willingness-to-pay.</p>
+    </div>
+    <table>
+      <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name"><a href="https://www.kff.org/medicare/">KFF — Medicare Advantage</a></td>
+          <td class="what">Free, citable revealed-behavior anchors from MCBS/CMS enrollment: ~31% of beneficiaries compare plans, ~10% voluntarily switch/yr, plus margin and enrollment trends. The strongest free calibration anchor.</td>
+          <td class="grain"><span class="g">national / state</span> annual</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://deftresearch.com/medicare-shopping-and-switching-study/">Deft Research — Shopping &amp; Switching</a></td>
+          <td class="what">The industry-standard annual senior-market survey of shopping/switching rates, AEP behavior, and ranked switch reasons. Headline findings are free; the granular driver weights and segment splits are paid.</td>
+          <td class="grain"><span class="g">national survey</span> annual</td>
+          <td class="acc"><span class="pill mixed">FREE HEADLINE / PAID</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.commonwealthfund.org/publications/surveys">Commonwealth Fund — Value of Medicare</a></td>
+          <td class="what">Beneficiary survey on coverage choice and experience (MA vs traditional), with switch rates and reasons (cost &amp; benefits lead). A free MA-vs-TM comparison.</td>
+          <td class="grain"><span class="g">national survey</span> periodic</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.jdpower.com/business/press-releases/2025-us-medicare-advantage-study">J.D. Power — MA Satisfaction</a></td>
+          <td class="what">Annual member-satisfaction index with a ranked factor model (trust &gt; access &gt; saving time/money…) — a free attribute-importance prior for ordering choice-model coefficients.</td>
+          <td class="grain"><span class="g">national / by plan</span> annual</td>
+          <td class="acc"><span class="pill mixed">FREE HEADLINE / PAID</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer">
+    A curated catalog of public &amp; low-cost Medicare Advantage data sources · links verified June 2026.<br>
+    Sizes/years reflect what was publicly available at access time and may update. Restricted beneficiary-level sources
+    (encounter data, PDE, CCW/VRDC, LDS) exist but require a CMS Data-Use Agreement and are intentionally omitted here.
+  </div>
+</div>
+</body>
+</html>
