@@ -153,6 +153,24 @@
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
         <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/special-needs-plan-snp-data">Display Measures (pre-rating quality)</a></td>
+          <td class="what">Quality measures CMS tracks and publishes but does not rate (yet) — operational quality outside the stars, and a pipeline of future rated measures. Ships inside the Star Ratings zips through 2023 and as standalone <a href="https://www.cms.gov/medicare/health-drug-plans/part-c-d-performance-data">display-measures zips</a> from 2024. Heads-up: the 2019 file is tab-separated despite its .csv name.</td>
+          <td class="grain"><span class="g">contract</span> annual · 2012–2026 · ~40–58 measures/yr</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/lis-enrollment-plan">LIS Enrollment by Plan</a></td>
+          <td class="what">One workbook per year with BOTH total and low-income-subsidy enrollment per contract-PBP — the LIS share needs no external denominator. Published early in-year: the freshest public member-mix signal (the Plan Payment LICS series lags ~2 years). 2019 is missing from both CMS URL eras.</td>
+          <td class="grain"><span class="g">contract-PBP</span> annual · 2012–2026</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/special-needs-plan-snp-data">SNP Comprehensive Report</a></td>
+          <td class="what">Plan-level special-needs enrollment by SNP type (dual / chronic / institutional), monthly since 2008 — the public window on dual-eligible mix and its drift. Workbooks carry several alternative views of the same plans; pick one, never concatenate them.</td>
+          <td class="grain"><span class="g">contract-plan · monthly</span> 2008–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
           <td class="name"><a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers/quarterly-prescription-drug-plan-formulary-pharmacy-network-and-pricing-information">Part D Formulary, Pharmacy Network &amp; Pricing</a></td>
           <td class="what">The complete public drug benefit: every drug on every plan's formulary with tier and prior-auth / step-therapy / quantity-limit flags, plus drug pricing and pharmacy networks. Joins to contract-plan via the plan-information file — build formulary breadth, tier richness, and UM intensity as Part D cost and plan-choice features.</td>
           <td class="grain"><span class="g">formulary → contract-PBP</span> quarterly · ~2.6 GB/release</td>
@@ -202,7 +220,19 @@
           <td class="grain"><span class="g">provider / state × code</span> 2013–</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
-      </tbody>
+              <tr>
+          <td class="name"><a href="https://data.cms.gov/tools/mapping-medicare-disparities-by-population">Mapping Medicare Disparities (MMD)</a></td>
+          <td class="what">County-level Medicare FFS rates for exactly the preventive-care territory the Star Ratings score: mammography, colorectal screening, flu vaccination, diabetes-care indicators, readmissions, ED visits — by age/sex/race/dual. Export is per-selection CSV (no bulk file); County Health Rankings redistributes the key measures in one national CSV per year.</td>
+          <td class="grain"><span class="g">county</span> annual · 2012– (~2-yr lag) · FFS only</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/provider-data/dataset/632h-zaca">Care Compare — Unplanned Hospital Visits</a></td>
+          <td class="what">Hospital-level 30-day readmission and excess-days measures with county sitting right in the file — a clean county roll-up for local delivery-system quality (the readmission environment MA members actually use). Bulk CSV + a working datastore API; historical vintages are NOT at guessable archive URLs.</td>
+          <td class="grain"><span class="g">hospital → county</span> 3-yr rolling window · refreshed ~annually</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+</tbody>
     </table>
   </section>
 
@@ -352,7 +382,13 @@
           <td class="grain"><span class="g">contract</span> annual · CY2025–</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
-      </tbody>
+              <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/audits-compliance/part-c-d/part-c-and-part-d-enforcement-actions">Part C &amp; D Enforcement Actions</a></td>
+          <td class="what">Civil money penalties (dollar amounts inline), enrollment suspensions, and sanction releases — small, discrete, high-signal compliance events. One HTML table, no CSV; organization-level (contract numbers live only inside the per-action PDF letters); history starts 2021-09.</td>
+          <td class="grain"><span class="g">organization</span> ~85 actions · 2021–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+</tbody>
     </table>
   </section>
 
@@ -394,7 +430,29 @@
     </table>
   </section>
 
-  <div class="footer">
+    <section class="bucket">
+    <div class="bhead">
+      <div class="bnum">Verified dead ends</div>
+      <h2>What does NOT exist publicly (so you can stop looking)</h2>
+      <p class="bdesc">Each of these was checked on the actual pages (June 2026). The obvious-sounding source either
+      doesn't exist at usable detail, or is gated behind HPMS / a data-use agreement.</p>
+    </div>
+    <table>
+      <tbody>
+        <tr><td class="what"><b>CTM complaint rates (monthly/quarterly)</b> — not public at any cadence; plans see their own in HPMS. The annual star-ratings complaints measure is the public ceiling.</td></tr>
+        <tr><td class="what"><b>Health Outcomes Survey (HOS) by contract</b> — contract IDs are blinded in the public files AND the DUA tier; pre-October results go only to the plans via HPMS. The star tables are the first public sighting.</td></tr>
+        <tr><td class="what"><b>IRE (independent review) appeals by contract</b> — quarterly fact sheets are national aggregates; no H-numbers anywhere. The stars appeals measures already carry the IRE-derived signal.</td></tr>
+        <tr><td class="what"><b>Part C/D Reporting Requirements (grievances, appeals volumes)</b> — a Limited Data Set: DUA + fee, ~2-year lag. The free grievance/appeals rates inside the star and display files carry most of the same signal.</td></tr>
+        <tr><td class="what"><b>County flu vaccination (CDC FluVaxView)</b> — no county download product exists; the county Medicare flu rate lives in MMD / County Health Rankings instead.</td></tr>
+        <tr><td class="what"><b>BRFSS SMART county estimates</b> — ~4% of counties per year and no defensible 65+ cut; use PLACES or MMD.</td></tr>
+        <tr><td class="what"><b>Dartmouth Atlas</b> — discontinued; frozen at 2019 data permanently.</td></tr>
+        <tr><td class="what"><b>NCQA report cards as a stars preview</b> — same-HEDIS-year ratings post ~3 weeks before CMS stars, but with no contract IDs, rating-scale only, and restrictive licensing.</td></tr>
+        <tr><td class="what"><b>Contract-level disability / dual percentages</b> — CMS computes them internally; the public proxies are the LIS files, the SNP report, and the banded CAI adjustment categories inside the star zips.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+<div class="footer">
     A curated catalog of public &amp; low-cost Medicare Advantage data sources · links verified June 2026.<br>
     Sizes/years reflect what was publicly available at access time and may update. Restricted beneficiary-level sources
     (encounter data, PDE, CCW/VRDC, LDS) exist but require a CMS Data-Use Agreement and are intentionally omitted here.
