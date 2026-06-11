@@ -160,7 +160,7 @@
         </tr>
         <tr>
           <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/lis-enrollment-plan">LIS Enrollment by Plan</a></td>
-          <td class="what">One workbook per year with BOTH total and low-income-subsidy enrollment per contract-PBP — the LIS share needs no external denominator. Published early in-year: the freshest public member-mix signal (the Plan Payment LICS series lags ~2 years). 2019 is missing from both CMS URL eras.</td>
+          <td class="what">One workbook per year with BOTH total and low-income-subsidy enrollment per contract-PBP — the LIS share needs no external denominator. Published early in-year: the freshest public member-mix signal (the Plan Payment LICS series lags ~2 years). 2019 is missing from both CMS URL eras. A <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/lis-contract-enrollment-county">contract&times;county variant</a> is also published.</td>
           <td class="grain"><span class="g">contract-PBP</span> annual · 2012–2026</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
@@ -339,8 +339,20 @@
           <td class="acc"><span class="pill key">FREE · KEY</span></td>
         </tr>
         <tr>
+          <td class="name"><a href="https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html">AHRQ SDOH Database</a></td>
+          <td class="what">One pre-compiled, documented county/ZIP/tract panel of social-determinants variables from ~44 sources (ACS, AHRF, CDC...) — five domains incl. transportation and healthcare access. Largely supersedes hand-assembling ACS pulls; dedupe against AHRF for supply fields. Site blocks automated fetchers (fine in a browser); a DataLumos mirror exists.</td>
+          <td class="grain"><span class="g">county / ZIP / tract</span> 2009–2023</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://gis.cdc.gov/grasp/diabetes/DiabetesAtlas.html">CDC U.S. Diabetes Surveillance System</a></td>
+          <td class="what">County diagnosed-diabetes prevalence/incidence back to 2004 — the longest county diabetes trend available. Caveats: modeled small-area estimates (same BRFSS lineage as PLACES), all-adult not 65+, and export is click-per-indicator from the atlas (no bulk file). For the Medicare population the CMS Chronic Conditions file usually dominates; this earns its place only for the 2004+ trend depth.</td>
+          <td class="grain"><span class="g">county</span> annual · 2004–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
           <td class="name"><a href="https://www.atsdr.cdc.gov/place-health/php/svi/">CDC SVI &amp; UW ADI</a></td>
-          <td class="what">County/tract social-vulnerability and area-deprivation composites. Convenient SDOH indices — note ADI's home-value term distorts high-cost counties (prefer SDI for cost work); ADI needs a free login.</td>
+          <td class="what">County/tract social-vulnerability and area-deprivation composites. Convenient SDOH indices — note ADI's home-value term distorts high-cost counties (prefer SDI for cost work); ADI needs a free login. ADI’s click-through license bars redistribution; a license-free standardized ADI lives in <a href="https://www.openicpsr.org/openicpsr/project/210581/version/V1/view">NaNDA on openICPSR</a>.</td>
           <td class="grain"><span class="g">county / tract</span> biennial / periodic</td>
           <td class="acc"><span class="pill reg">FREE · REGISTER</span></td>
         </tr>
