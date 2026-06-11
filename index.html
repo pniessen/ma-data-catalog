@@ -104,7 +104,7 @@
         </tr>
         <tr>
           <td class="name"><a href="https://www.cms.gov/medicare/health-drug-plans/medical-loss-ratio">Contract MLR Public Use File</a></td>
-          <td class="what">Reported medical-loss ratio plus revenue, claims, member-months and (detailed years) 19 supplemental-benefit line items + the Part D split. The real cost/revenue anchor — and the distribution of contract MLRs.</td>
+          <td class="what">Reported medical-loss ratio plus revenue, claims, member-months and (detailed years) 19 supplemental-benefit line items + the Part D split. The real cost/revenue anchor — and the distribution of contract MLRs. Detailed years (2014–17, 2023; CMS published only a 5-column summary 2018–22) also carry the §4 quality-improvement (QIA) expense lines — tested as a star-rating leading indicator: NOT predictive (level-correlation negative: low-rated contracts spend more, i.e. remediation).</td>
           <td class="grain"><span class="g">contract</span> ~166 cols · 2014–2023</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
@@ -118,6 +118,12 @@
           <td class="name"><a href="https://www.cms.gov/medicare/payment/medicare-advantage-rates-statistics/ratebooks-supporting-data">MA Ratebooks &amp; Rate Announcement</a></td>
           <td class="what">County benchmarks (the bid ceiling), the FFS standardized rates behind them, and the annual payment parameters (growth, normalization, coding-intensity, rebate % by star). The legal Apr-T inputs for next-year bids.</td>
           <td class="grain"><span class="g">county / national</span> annual · 2000–2027</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.federalregister.gov/developers/documentation/api/v1">Rule calendar — Federal Register API + HPMS memos</a></td>
+          <td class="what">Every industry-wide star-rating shock 2022–2026 (better-of expiry, guardrails, Tukey, weight shifts, measure removals) was announced in a final rule 2–4 years ahead. The Federal Register API serves CMS rules as free JSON back to 1994 (same-day); Advance Notice / Rate Announcement live at stable per-year cms.gov PDFs (~Feb / Apr 1); the public HPMS weekly memo archive (~2015–, ZIPs of PDFs) carries the sub-regulatory star-ratings operational detail. Together: a machine-readable announced-methodology-changes calendar.</td>
+          <td class="grain"><span class="g">event calendar</span> 1994– / 2015–</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
       </tbody>
@@ -228,8 +234,32 @@
         </tr>
         <tr>
           <td class="name"><a href="https://data.cms.gov/provider-data/dataset/632h-zaca">Care Compare — Unplanned Hospital Visits</a></td>
-          <td class="what">Hospital-level 30-day readmission and excess-days measures with county sitting right in the file — a clean county roll-up for local delivery-system quality (the readmission environment MA members actually use). Bulk CSV + a working datastore API; historical vintages are NOT at guessable archive URLs.</td>
+          <td class="what">Hospital-level 30-day readmission and excess-days measures with county sitting right in the file — a clean county roll-up for local delivery-system quality (the readmission environment MA members actually use). Bulk CSV + a working datastore API; full-snapshot archive zips DO exist at a stable pattern from 2021 (next row) — an earlier note here saying otherwise is superseded.</td>
           <td class="grain"><span class="g">hospital → county</span> 3-yr rolling window · refreshed ~annually</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/provider-data/archived-data/hospitals">Care Compare archive snapshots — HCAHPS &amp; suite</a></td>
+          <td class="what">Full flat-file zips of ALL hospital CSVs (HCAHPS patient experience, overall stars, timely &amp; effective care, readmissions) at <span class="g">…/archive/Hospitals/{YYYY}/hospitals_{MM}_{YYYY}.zip</span>, verified 2021–2025 incl. July snapshots — so exact as-of-August joins. Home-health (HHCAHPS) and nursing-home siblings under the same pattern. County-aggregated HCAHPS is the most direct outside proxy for the CAHPS star measures. Pre-2021 vintages only via an unofficial mirror (github.com/asacarny/hospital-compare, 2004–2016).</td>
+          <td class="grain"><span class="g">provider → county</span> snapshots 2021–</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.cms.gov/provider-summary-by-type-of-service/medicare-part-d-prescribers">Part D Prescriber PUFs (Geography / Provider × Drug)</a></td>
+          <td class="what">By-Geography: state × drug claims/fills/beneficiaries with an LIS cost-share split, 2013–2024 — a clean adherence-exposure panel (state only, no county). By-Provider-and-Drug: NPI × drug; county derivable via the companion by-Provider file's zip5 (+ dual share, avg risk score, MAPD/LIS splits) → county × drug-class panel. ~17-month lag (year-Y data ≈ April Y+2): T−2 at an August-T clock. Files are multi-GB.</td>
+          <td class="grain"><span class="g">state / NPI → county</span> 2013–2024</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://open.fda.gov/apis/drug/drugshortages/">openFDA Drug Shortages</a></td>
+          <td class="what">The only live machine-readable FDA shortage feed (API + one bulk JSON, daily refresh, free): start dates, status, therapeutic category — PDC-relevant classes (cardiovascular, endocrine) identifiable. HARD CAVEAT: it is a live database, not an archive — resolved shortages purge after ~1 year (only 30 Resolved records), so forward features are excellent but backtest history needs Wayback reconstruction. ASHP's richer database is paid-license only; the legacy FDA site and the HealthData.gov export are dead (see dead ends).</td>
+          <td class="grain"><span class="g">national × drug class</span> live · partial history to 2012</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://download.cms.gov/nppes/NPI_Files.html">County pharmacy access — NPPES + PDP network files</a></td>
+          <td class="what">Two free routes to pharmacy-desert dynamics: (1) NPPES monthly files filtered to pharmacy taxonomy (3336*) → county pharmacy counts/closures; NBER mirrors monthly vintages 2017→current (closure dating needs the deactivation file — dead NPIs linger). (2) CMS monthly PDP formulary zips (2019–) include the <b>pharmacy network file</b> keyed by contract — in-network/preferred pharmacy counts per contract per county, a direct "getting needed drugs" feature. Census CBP (NAICS 446110/456110, 1986–2023) is the long-history county backfill (code break 2022, 2-yr lag).</td>
+          <td class="grain"><span class="g">county / contract</span> monthly 2017– / 2019–</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
 </tbody>
@@ -294,6 +324,18 @@
           <td class="name"><a href="https://data.hrsa.gov/topics/health-workforce/nchwa/ahrf">Area Health Resources File (AHRF)</a></td>
           <td class="what">One county file with 6,000+ variables — physician/specialist supply, hospital beds, facilities, demographics, rurality. A ready-made county market-structure feature pack.</td>
           <td class="grain"><span class="g">county</span> ~3,235 cty · annual</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://data.hrsa.gov/data/download">HRSA HPSA shortage designations</a></td>
+          <td class="what">County primary-care / mental-health shortage designations as one cumulative CSV (updated daily) with designation AND withdrawal dates — so historical as-of snapshots are reconstructable (designated ≤ date &lt; withdrawn). Joins on county FIPS; a clean access-to-care signal. Caveat: HPSA score/FTE reflect the latest update only — use status + designation age as the time-resolved fields.</td>
+          <td class="grain"><span class="g">county FIPS</span> live · dates → any as-of</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.bls.gov/cew/downloadable-data-files.htm">BLS QCEW — county healthcare staffing</a></td>
+          <td class="what">County × NAICS healthcare-sector (62, 621/622/623) establishment employment and wages, annual back to 1990 (+quarterly), free bulk zips at data.bls.gov/cew — workforce-tightness exposure for access/experience modeling. Annual Y publishes ~June Y+1. OEWS adds occupational detail (RNs, physicians) but is MSA-level only and its servers block automated fetches — marginal next to QCEW.</td>
+          <td class="grain"><span class="g">county × NAICS</span> annual 1990– · qtrly</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
         <tr>
@@ -400,6 +442,12 @@
           <td class="grain"><span class="g">organization</span> ~85 actions · 2021–</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/medicare/audits-compliance/part-c-d/program-audit-results">CMS Program Audit Results (sponsor table)</a></td>
+          <td class="what">The only public sponsor-level audit-severity signal: CARs / ICARs / elements-tested per audited parent org (CMS's score formula is published; a close proxy is computable). The live PDF is a rolling 2-year window — Wayback Machine snapshots stitch continuous 2020–2024 (~30–50 sponsors/yr; audited set is non-random). Audit year Y posts ~July Y+1. The annual audit &amp; enforcement report PDFs add per-sponsor CMP dollar amounts (2019–2024). cms.gov HTML 403s plain fetchers — use a browser User-Agent; /files/ PDFs download unconditionally.</td>
+          <td class="grain"><span class="g">parent org (fuzzy)</span> 2020–2024 stitched</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
 </tbody>
     </table>
   </section>
@@ -460,6 +508,9 @@
         <tr><td class="what"><b>Dartmouth Atlas</b> — discontinued; frozen at 2019 data permanently.</td></tr>
         <tr><td class="what"><b>NCQA report cards as a stars preview</b> — same-HEDIS-year ratings post ~3 weeks before CMS stars, but with no contract IDs, rating-scale only, and restrictive licensing.</td></tr>
         <tr><td class="what"><b>Contract-level disability / dual percentages</b> — CMS computes them internally; the public proxies are the LIS files, the SNP report, and the banded CAI adjustment categories inside the star zips.</td></tr>
+        <tr><td class="what"><b>State insurance-department complaint indexes for MA</b> — the whole family fails on federal preemption: MA member complaints route to CMS (CTM/1-800-MEDICARE), not state DOIs. Verified: NAIC CIS has no free bulk export (per-company search UI; bulk products are paid) and is jurisdictionally thin on MA; Texas TDI's excellent open dataset has <i>zero</i> Medicare rows (no MA coverage line); California DMHC's IMR/complaint data excludes MA (appeals go to the federal IRE); NY DFS's health-insurer complaint rankings explicitly exclude Medicare.</td></tr>
+        <tr><td class="what"><b>Drug-shortage history (full event archive)</b> — ASHP's database (richer than FDA's) is paid-license only, RSS is current-snapshot only; FDA's legacy shortage site is decommissioned (404) and the HealthData.gov export is a stale 2021 stub with zero columns. openFDA (Bucket 3) is the only live free feed, and it purges resolved records after ~1 year — a complete historical start/end panel does not exist publicly; Wayback reconstruction is the only route.</td></tr>
+        <tr><td class="what"><b>MA MLR QIA spend as a quality lead</b> — exists (detailed-year §4 lines) but tested NOT predictive of subsequent star movement (rho ≈ 0 within rating band; negative level-correlation = remediation spend). Recorded so nobody re-mines it.</td></tr>
       </tbody>
     </table>
   </section>
