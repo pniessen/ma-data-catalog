@@ -171,6 +171,12 @@
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
         <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/ma-hedis-public-use-files">MA HEDIS Public Use Files</a></td>
+          <td class="what">Contract-level HEDIS rates in long format (measure x indicator x contract) — ~36 measure codes of which only ~13 feed the Star Ratings, so the PUF&rsquo;s value is the NON-star measures (follow-up after ED/hospitalization, depression screening, opioid measures, risk-adjusted utilization) plus component indicators under the star composites. MY Y publishes ~Oct Y+1 (the same clock as the stars that use it — breadth, not recency). MY2019 is a genuine COVID gap (reporting waived); usable history starts MY2020. A parallel SNP HEDIS PUF exists. <b>Tested</b> as oriented leading indicators for next-year star moves (June 2026): NO-GO — the star files&rsquo; own measure detail already carries the signal.</td>
+          <td class="grain"><span class="g">contract x measure</span> MY 2020&ndash;2024</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
           <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/special-needs-plan-snp-data">SNP Comprehensive Report</a></td>
           <td class="what">Plan-level special-needs enrollment by SNP type (dual / chronic / institutional), monthly since 2008 — the public window on dual-eligible mix and its drift. Workbooks carry several alternative views of the same plans; pick one, never concatenate them.</td>
           <td class="grain"><span class="g">contract-plan · monthly</span> 2008–</td>
@@ -339,6 +345,18 @@
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
         <tr>
+          <td class="name"><a href="https://www.kff.org/medicaid/issue-brief/medicaid-enrollment-and-unwinding-tracker/">KFF Medicaid Unwinding + D-SNP policy calendar</a></td>
+          <td class="what">Per-state Medicaid-unwinding disenrollment counts/rates (final series, 2023&ndash;24; rates span 12%&ndash;57%, procedural share included) — pulled from KFF&rsquo;s own Datawrapper data files, not screen-scraped. Plus a compiled D-SNP policy event calendar (MMP sunset cohort eff. 2026-01, FIDE aligned enrollment 2025, CA restrictions, &sect;422.514(h) 2027). <b>Tested</b> as a composition-shock feature (unwinding rate x dual share, June 2026): NO-GO on the 2025/26 star folds — kept as a forward simulation input.</td>
+          <td class="grain"><span class="g">state</span> 2023&ndash;24 + event calendar 2020&ndash;27</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.shepscenter.unc.edu/programs-projects/rural-health/rural-hospital-closures/">Hospital closures — UNC Sheps registry</a></td>
+          <td class="what">The authoritative rural-hospital closure registry: ~123 closures 2005&ndash;2026, dated to the month, county-resolved, free downloadable spreadsheet (converted-vs-complete flag included). NO public URBAN closure registry exists (GAO anonymizes its hospitals; AHA survey is paid) — frame any feature as a RURAL closure shock. <b>Tested</b> in a county footprint-exposure feature (June 2026): NO-GO at the star-rating gate; retained as county access-shock context.</td>
+          <td class="grain"><span class="g">hospital → county</span> monthly 2005&ndash;</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
           <td class="name"><a href="https://www.cdc.gov/places/">CDC PLACES</a></td>
           <td class="what">Model-based county prevalence of 26 chronic conditions (diabetes, CHD, COPD, CKD…). Real measured morbidity at county grain — a strong “true need” signal independent of MA coding.</td>
           <td class="grain"><span class="g">county</span> ~3,150 cty · 2020–25</td>
@@ -448,6 +466,30 @@
           <td class="grain"><span class="g">parent org (fuzzy)</span> 2020–2024 stitched</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
+        <tr>
+          <td class="name"><a href="https://layoffdata.com/data/">WARN layoff notices (compiled)</a></td>
+          <td class="what">The WARN Database at layoffdata.com — 66k+ state WARN notices 2009&ndash;present in two public Google-Sheet exports (free, no auth; the Cleveland Fed openICPSR version needs registration). Company/state/dates/worker counts; ~620 rows match MA payer entities (Kaiser, Blues, Optum, Molina&hellip;). Caveats: white-collar/remote payer layoffs systematically under-trigger WARN (Humana nearly absent despite known cuts); CVS rows conflate retail closures. <b>Tested</b> as an org-level 24-month layoff-pressure feature (June 2026): NO-GO at the star gate.</td>
+          <td class="grain"><span class="g">company x state x date</span> 2009&ndash;</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name">Payer&ndash;provider dispute events (news-compiled)</td>
+          <td class="what">219 dated payer-provider contract disputes/network terminations 2017&ndash;2026 compiled from Becker&rsquo;s roundup lists via Wayback (Becker&rsquo;s blocks direct fetches; per-row source URLs retained). Credible from 2022; the 2024&ndash;26 health-systems-dropping-Medicare-Advantage wave (Humana + UnitedHealthcare dominant) is well captured. Counts are media-intensity biased — use flags/shares, not levels (FTI tracked 133 disputes in 2024 vs our roundup-named subset). <b>Tested</b> (June 2026): NO-GO at the star gate — the MA-termination wave only enters training for 2027+ folds; RE-TEST then.</td>
+          <td class="grain"><span class="g">payer x provider x date</span> 2017&ndash;2026</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.bbb.org/">BBB carrier complaint volumes</a></td>
+          <td class="what">Business-profile pages carry &ldquo;complaints closed last 12 months / last 3 years&rdquo; + review stars per carrier (profile pages are robots.txt-permitted; Cloudflare blocks plain curl). Live snapshot extractable for all majors; Wayback CDX gives genuine point-in-time history (1&ndash;4 snapshots/carrier/yr from ~2022, machine-readable embedded JSON). Org-wide counts (not MA-specific); Centene&rsquo;s volume hides in brand profiles. Verdict: thin-but-real backtest series; collected as a slow org-service covariate, not yet a model feature.</td>
+          <td class="grain"><span class="g">parent org</span> live + sparse 2022&ndash;</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://performance-partners.apple.com/search-api">Carrier member-app ratings (iTunes API)</a></td>
+          <td class="what">Aggregate app rating + count per carrier member app via the free iTunes lookup API; dated review stream via the RSS feed. HARD LIMIT: the RSS feed caps at the 500 most-recent reviews, so popular apps&rsquo; dated history reaches back only months — a 2021&ndash;26 backtest panel is NOT constructible; aggregate ratings have no history endpoint. Verdict: live watchlist only — poll monthly and the signal accrues (snapshot already separates carriers: Alignment 2.82 and stale vs UHC 4.70/785k).</td>
+          <td class="grain"><span class="g">app → parent org</span> live snapshot</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
 </tbody>
     </table>
   </section>
@@ -510,6 +552,8 @@
         <tr><td class="what"><b>Contract-level disability / dual percentages</b> — CMS computes them internally; the public proxies are the LIS files, the SNP report, and the banded CAI adjustment categories inside the star zips.</td></tr>
         <tr><td class="what"><b>State insurance-department complaint indexes for MA</b> — the whole family fails on federal preemption: MA member complaints route to CMS (CTM/1-800-MEDICARE), not state DOIs. Verified: NAIC CIS has no free bulk export (per-company search UI; bulk products are paid) and is jurisdictionally thin on MA; Texas TDI's excellent open dataset has <i>zero</i> Medicare rows (no MA coverage line); California DMHC's IMR/complaint data excludes MA (appeals go to the federal IRE); NY DFS's health-insurer complaint rankings explicitly exclude Medicare.</td></tr>
         <tr><td class="what"><b>Drug-shortage history (full event archive)</b> — ASHP's database (richer than FDA's) is paid-license only, RSS is current-snapshot only; FDA's legacy shortage site is decommissioned (404) and the HealthData.gov export is a stale 2021 stub with zero columns. openFDA (Bucket 3) is the only live free feed, and it purges resolved records after ~1 year — a complete historical start/end panel does not exist publicly; Wayback reconstruction is the only route.</td></tr>
+        <tr><td class="what"><b>Urban hospital-closure registry</b> — does not exist publicly: GAO anonymizes the hospitals in its closure reports, the AHA Annual Survey is paid, Becker&rsquo;s lists are paywalled and non-systematic. The UNC Sheps registry (Bucket 5) is rural-only; an unbiased national closure series would need the CMS Provider of Services termination file (feasible follow-up).</td></tr>
+        <tr><td class="what"><b>Deep app-review history</b> — the iTunes RSS review feed is hard-capped at the 500 most-recent reviews and there is no historical endpoint for aggregate ratings, so multi-year review panels for popular carrier apps cannot be reconstructed (Wayback snapshots of store pages are the only partial salvage). Google Play has no documented public API; deep Play history requires ToS-gray internal endpoints.</td></tr>
         <tr><td class="what"><b>MA MLR QIA spend as a quality lead</b> — exists (detailed-year §4 lines) but tested NOT predictive of subsequent star movement (rho ≈ 0 within rating band; negative level-correlation = remediation spend). Recorded so nobody re-mines it.</td></tr>
       </tbody>
     </table>
