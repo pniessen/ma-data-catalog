@@ -490,6 +490,12 @@
           <td class="grain"><span class="g">app → parent org</span> live snapshot</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
+        <tr>
+          <td class="name"><a href="https://efts.sec.gov/LATEST/search-index?q=%22star+ratings%22&forms=8-K">SEC EDGAR star-disclosure language (full-text search)</a></td>
+          <td class="what">Free JSON full-text search over filings (2001+): star-rating / quality-bonus mentions per public MA parent (9 tickers cover most MA enrollment). TWO uses, opposite verdicts: (1) backtest FEATURES (8-K event counts, mention escalation) — <b>tested NO-GO</b> (June 2026): by each August the prior year&rsquo;s disclosures are already absorbed in the published rating; (2) the <b>preview-window EARLY WARNING</b> — companies see their ratings in the CMS plan preview (Aug/Sep) before the October publication, and material changes surface in 8-Ks weeks early (validated: Humana 2022-09-15; Centene 2024-09-10/16; Humana 2024-10-02) — <b>shipped</b> as a live console overlay (issuer-disclosed provenance, deliberately outside the model clock). API quirk: the `ciks` filter 500s unless a `forms` filter is also passed; transient 500s under burst load need retries.</td>
+          <td class="grain"><span class="g">parent org x filing date</span> 2001&ndash;</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
 </tbody>
     </table>
   </section>
