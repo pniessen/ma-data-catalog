@@ -283,10 +283,22 @@
       <thead><tr><th>Dataset</th><th>What it is &amp; why it helps</th><th>Grain · size · years</th><th>Access</th></tr></thead>
       <tbody>
         <tr>
-          <td class="name"><a href="https://www.cms.gov/data-research/research/medicare-current-beneficiary-survey">MCBS Public Use File</a></td>
-          <td class="what">A real, survey-weighted, <b>MA-vs-FFS-flagged</b> beneficiary health survey — the rare public read on the MA member-health envelope and the MA-vs-FFS selection direction.</td>
-          <td class="grain"><span class="g">beneficiary (weighted)</span> 2013–2022</td>
+          <td class="name"><a href="https://www.cms.gov/data-research/research/medicare-current-beneficiary-survey">MCBS Survey File PUF</a></td>
+          <td class="what">A real, survey-weighted, <b>MA-vs-FFS-flagged</b> beneficiary health survey carrying supplemental-coverage flags <b>and</b> FFS claims-derived utilization on the <b>same record</b> — enabling a Medigap <b>0%-vs-20% cost-sharing "natural experiment"</b> that replicates the RAND HIE (~−0.17 outpatient arc elasticity; see the Medigap moral-hazard white paper). Also the public read on the MA member-health envelope and MA-vs-FFS selection.</td>
+          <td class="grain"><span class="g">beneficiary (weighted)</span> 2013–2023</td>
           <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/research-statistics-data-and-systems/downloadable-public-use-files/mcbs-public-use-file">MCBS Cost Supplement PUF</a></td>
+          <td class="what">Member-level annual <b>expenditures + utilization by service and source of payment, including out-of-pocket dollars</b> — the realized cost/use the Survey File lacks. Caveats: MA cost is imputed (FFS-anchored); not linkable to the Survey File in the PUF; OOP↔use is mechanically tied (no elasticity from it alone).</td>
+          <td class="grain"><span class="g">beneficiary (weighted)</span> 2018–2023</td>
+          <td class="acc"><span class="pill free">FREE</span></td>
+        </tr>
+        <tr>
+          <td class="name"><a href="https://www.cms.gov/data-research/files-for-order/limited-data-set-lds-files/medicare-current-beneficiary-survey-mcbs">MCBS Cost &amp; Use LDS</a></td>
+          <td class="what">Restricted upgrade: <b>stable longitudinal ID</b> + linkable coverage↔utilization + <b>exact counts</b> → the within-person Medigap design (follow coverage-switchers) that closes the selection gap the PUFs cannot. <b>DUA · ~$300/file-yr · no IRB</b> (order via ResDAC).</td>
+          <td class="grain"><span class="g">beneficiary (longitudinal)</span> annual</td>
+          <td class="acc"><span class="pill reg">DUA · ~$300/yr</span></td>
         </tr>
         <tr>
           <td class="name"><a href="https://www.hosonline.org/en/data-dissemination/research-data-files/">Medicare Health Outcomes Survey (HOS)</a></td>
@@ -295,8 +307,8 @@
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
         <tr>
-          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files">DE-SynPUF (synthetic claims)</a></td>
-          <td class="what">CMS synthetic beneficiary claim lines — a public substrate for building per-member risk shapes and exercising an HCC grouper without a data-use agreement.</td>
+          <td class="name"><a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-claims-synthetic-public-use-files/cms-2008-2010-data-entrepreneurs-synthetic-public-use-file-de-synpuf">DE-SynPUF (synthetic claims)</a></td>
+          <td class="what">CMS synthetic beneficiary claim lines — a public substrate for per-member risk shapes and exercising an HCC grouper without a DUA. <b>Dead end for behavioral/elasticity work:</b> CMS warns the synthesis does <b>not preserve relationships between variables</b>, and there is <b>no Medigap/supplemental flag</b> (claims never see secondary coverage).</td>
           <td class="grain"><span class="g">synthetic beneficiary</span> 2008–2010</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
