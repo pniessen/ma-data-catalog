@@ -435,12 +435,12 @@
         </tr>
 <tr class="detail"><td colspan="4"><div class="vbox"><div class="vhead vok">✓ <b>Verified downloadable</b> — 2019–2025</div><div class="vnote">Live API — endpoint: <a href="https://www.cdc.gov/places/" target="_blank" rel="noopener">https://www.cdc.gov/places/</a></div></div></td></tr>
         <tr class="ds">
-          <td class="name"><span class="chev">▸</span> <a href="https://data.cms.gov/medicare-chronic-conditions/specific-chronic-conditions">CMS Medicare Chronic Conditions (CCW)</a> <span class="vspan part">△ no bulk file</span></td>
+          <td class="name"><span class="chev">▸</span> <a href="https://data.cms.gov/medicare-chronic-conditions">CMS Medicare Chronic Conditions (CCW)</a> <span class="vspan part">△ no bulk file</span></td>
           <td class="what"><b>Claims-measured</b> county prevalence of 21 chronic conditions among Medicare <b>FFS</b> beneficiaries — incl. chronic kidney disease and heart failure that PLACES omits — plus a multiple-condition burden tail and FFS per-capita spend. The Medicare-specific complement to PLACES (model-based / all-adult); disease-resolved, so conditions map to drug classes for Part D / out-of-pocket modeling. FFS-only, so it reads the risk pool's <i>shape</i>, not the MA pool.</td>
           <td class="grain"><span class="g">county (FFS)</span> ~3,144 cty · 2017</td>
           <td class="acc"><span class="pill free">FREE</span></td>
         </tr>
-<tr class="detail"><td colspan="4"><div class="vbox"><div class="vhead vpart">△ No clean bulk download</div><div class="vnote">Interactive dashboard (data.cms.gov/medicare-chronic-conditions/specific-chronic-conditions): filter + export-per-selection CSV only, NO clean bulk flat file. Not in DCAT data.json; no static download links; data-api/v1/dataset/{uuid}/data exists but UUID only available in the SPA runtime. Dead-end like MMD/CDC-diab. (Separate &#x27;Chronic Conditions PUF&#x27; exists at cms.gov/.../basic-stand-alone... if needed.)</div></div></td></tr>
+<tr class="detail"><td colspan="4"><div class="vbox"><div class="vhead vpart">△ No clean bulk download</div><div class="vnote">LINK FIXED: catalog&#x27;s /specific-chronic-conditions slug 404s (&#x27;Sorry, we couldn&#x27;t find that page&#x27;); valid landing is the collection data.cms.gov/medicare-chronic-conditions. Still a dashboard (filter + export-per-selection CSV), no clean bulk flat file; data-api needs the SPA-runtime UUID.</div></div></td></tr>
         <tr class="ds">
           <td class="name"><span class="chev">▸</span> <a href="https://wonder.cdc.gov/">CDC WONDER / Census PEP</a> <span class="vspan no">⊘ not open</span></td>
           <td class="what">County all-cause mortality and 65+ population denominators — a county morbidity/mortality proxy (and an independent population base). (Available via Census PEP when the WONDER API is unavailable.)</td>
